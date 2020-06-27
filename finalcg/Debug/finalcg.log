@@ -1,0 +1,3 @@
+﻿  finalcg.cpp
+c:\users\abhishek a h\source\repos\finalcg\frame2.h(688): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  finalcg.vcxproj -> C:\Users\Abhishek A H\source\repos\finalcg\Debug\finalcg.exe

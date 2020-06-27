@@ -1,0 +1,594 @@
+
+
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+      <meta charset="utf-8">
+      <title>ZingGrid: Blank Grid</title>
+      <link rel="stylesheet" href="bootstrap.css">
+      <script type="text/javascript" src="jquery-3.5.1.js"></script>
+      <script src="zingchart.min.js"></script>
+      <style>
+
+      body {
+        font-family: "Lato", sans-serif;
+      }
+
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #324154;
+        border-top: 1px solid lightblue;
+        border-bottom: 1px solid lightblue;
+        border-right: 0.1px solid lightblue;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: lightblue;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        /* color: #f1f1f1; */
+
+        color: red;
+      }
+
+      .sidenav .closebtn {
+        color: red;
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /* html, */
+        body {
+          background-color: #324154;
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        .row{
+          /* height: 50%; */
+          /* margin-left: 20px; */
+          width: 90%;
+          margin-left: 100px;
+        }
+
+        .div1{
+          /* border: 1px solid black; */
+          height: 300px;
+          width: 40%;
+          margin-left: 20px;
+        }
+
+        .div2{
+          height: 300px;
+          width: 40%;
+          margin-left: 20px;
+        }
+
+        .chart--container {
+
+          height: 100%;
+          width: 100%;
+          min-height: 150px;
+        }
+
+        .zc-ref {
+          display: none;
+        }
+      </style>
+    </head>
+
+    <body style="float: right;">
+
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">
+          <img class="rounded-circle" style="height: 90px;" src="anime3.png" alt="">
+        </a>
+        <a href="#">dashboard</a>
+        <a href="#">maps</a>
+        <a href="#">notifications</a>
+        <a href="#">user profile</a>
+        <a href="#">table list</a>
+        <a href="todo list project/index.html">To-Do's</a>
+      </div>
+
+      <!-- <h2>Sidenav Here</h2> -->
+      <!-- <small>Click on the element below to open the side navigation menu.</small><br> -->
+      <span style="position: fixed; font-size:30px; margin-left: 10px; color: lightblue; cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+
+      <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "350px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+      <!-- CHART CONTAINER -->
+      <div class="row" style="">
+        <div class="col-sm-12" style="margin: 30px auto;">
+          <div id="myChart" class="chart--container" style="border: 1px solid black; height: 300px;"></div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center" style="">
+        <div class="col-sm-4" style="margin: 30px auto;">
+          <div id="myChart1" class="chart--container" style="border: 1px solid black; height: 300px;"></div>
+        </div>
+        <div class="col-sm-4" style="margin: 30px auto;">
+          <div id="myChart2" class="chart--container" style="border: 1px solid black; height: 300px;"></div>
+        </div>
+        <div class="col-sm-4" style="margin: 30px auto;">
+          <div id="myChart3" class="chart--container" style="border: 1px solid black; height: 300px;"></div>
+        </div>
+        <div class="col-sm-4" style="margin: 30px auto;">
+          <div id="mycharts" class="chart--container" style="border: 1px solid black; height: 300px;"></div>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- <div id="myChart" class="chart--container">
+        <a class="zc-ref" href="https://www.zingchart.com">Powered by ZingChart</a>
+      </div> -->
+      <script>
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // window:load event for Javascript to run after HTML
+        // because this Javascript is injected into the document head
+        window.addEventListener('load', () => {
+          // Javascript code to execute after DOM content
+
+          // full ZingChart schema can be found here:
+          // https://www.zingchart.com/docs/api/json-configuration/
+          const myConfig = {
+            type: 'bar3d',
+            title: {
+              text: 'Demo1',
+              fontSize: 24,
+              color: '#5d7d9a'
+            },
+            legend: {
+              draggable: true,
+            },
+            scaleX: {
+              // set scale label
+              label: {
+                text: 'Days'
+              },
+              // convert text on scale indices
+              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            scaleY: {
+              // scale label with unicode character
+              label: {
+                text: 'Temperature (°F)'
+              }
+            },
+            plot: {
+              // animation docs here:
+              // https://www.zingchart.com/docs/tutorials/design-and-styling/chart-animation/#animation__effect
+              animation: {
+                effect: 'ANIMATION_EXPAND_BOTTOM',
+                method: 'ANIMATION_STRONG_EASE_OUT',
+                sequence: 'ANIMATION_BY_NODE',
+                speed: 275,
+              }
+            },
+            series: [{
+                // plot 1 values, linear data
+                values: [23, 20, 70, 29, 25, 17, 15],
+                text: 'Week 1',
+                backgroundColor: '#4d80a6'
+              },
+              {
+                // plot 2 values, linear data
+                values: [35, 42, 33, 49, 35, 47, 35],
+                text: 'Week 2',
+                backgroundColor: '#70cfeb'
+              },
+              {
+                // plot 2 values, linear data
+                values: [15, 22, 13, 33, 44, 27, 31],
+                text: 'Week 3',
+                backgroundColor: '#8ee9de'
+              }
+            ]
+          };
+
+          // render chart with width and height to
+          // fill the parent container CSS dimensions
+          zingchart.render({
+            id: 'myChart',
+            data: myConfig,
+            height: '100%',
+            width: '100%'
+          });
+        });
+      </script>
+      <script>
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // window:load event for Javascript to run after HTML
+        // because this Javascript is injected into the document head
+        window.addEventListener('load', () => {
+          // Javascript code to execute after DOM content
+
+          // full ZingChart schema can be found here:
+          // https://www.zingchart.com/docs/api/json-configuration/
+          const myConfig = {
+            type: 'line3d',
+            title: {
+              text: 'Demo2',
+              fontSize: 24,
+              color: '#5d7d9a'
+            },
+            legend: {
+              draggable: true,
+            },
+            scaleX: {
+              // set scale label
+              label: {
+                text: 'Days'
+              },
+              // convert text on scale indices
+              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            scaleY: {
+              // scale label with unicode character
+              label: {
+                text: 'Temperature (°F)'
+              }
+            },
+            plot: {
+              // animation docs here:
+              // https://www.zingchart.com/docs/tutorials/design-and-styling/chart-animation/#animation__effect
+              animation: {
+                effect: 'ANIMATION_EXPAND_BOTTOM',
+                method: 'ANIMATION_STRONG_EASE_OUT',
+                sequence: 'ANIMATION_BY_NODE',
+                speed: 275,
+              }
+            },
+            series: [{
+                // plot 1 values, linear data
+                values: [23, 20, 27, 29, 25, 17, 15],
+                text: 'Week 1',
+                backgroundColor: '#4d80a6'
+              },
+              {
+                // plot 2 values, linear data
+                values: [35, 42, 33, 49, 35, 47, 35],
+                text: 'Week 2',
+                backgroundColor: '#70cfeb'
+              },
+              {
+                // plot 2 values, linear data
+                values: [15, 22, 13, 33, 44, 27, 31],
+                text: 'Week 3',
+                backgroundColor: '#8ee9de'
+              }
+            ]
+          };
+
+          // render chart with width and height to
+          // fill the parent container CSS dimensions
+          zingchart.render({
+            id: 'myChart1',
+            data: myConfig,
+            height: '100%',
+            width: '100%'
+          });
+        });
+      </script>
+      <script>
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // window:load event for Javascript to run after HTML
+        // because this Javascript is injected into the document head
+        window.addEventListener('load', () => {
+          // Javascript code to execute after DOM content
+
+          // full ZingChart schema can be found here:
+          // https://www.zingchart.com/docs/api/json-configuration/
+          const myConfig = {
+            type: 'bar3d',
+            title: {
+              text: 'Demo3',
+              fontSize: 24,
+              color: '#5d7d9a'
+            },
+            legend: {
+              draggable: true,
+            },
+            scaleX: {
+              // set scale label
+              label: {
+                text: 'Days'
+              },
+              // convert text on scale indices
+              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            scaleY: {
+              // scale label with unicode character
+              label: {
+                text: 'Temperature (°F)'
+              }
+            },
+            plot: {
+              // animation docs here:
+              // https://www.zingchart.com/docs/tutorials/design-and-styling/chart-animation/#animation__effect
+              animation: {
+                effect: 'ANIMATION_EXPAND_BOTTOM',
+                method: 'ANIMATION_STRONG_EASE_OUT',
+                sequence: 'ANIMATION_BY_NODE',
+                speed: 275,
+              }
+            },
+            series: [{
+                // plot 1 values, linear data
+                values: [23, 20, 27, 29, 25, 17, 15],
+                text: 'Week 1',
+                backgroundColor: '#4d80a6'
+              },
+              {
+                // plot 2 values, linear data
+                values: [35, 42, 33, 49, 35, 47, 35],
+                text: 'Week 2',
+                backgroundColor: '#70cfeb'
+              },
+              {
+                // plot 2 values, linear data
+                values: [15, 22, 13, 33, 44, 27, 31],
+                text: 'Week 3',
+                backgroundColor: '#8ee9de'
+              }
+            ]
+          };
+
+          // render chart with width and height to
+          // fill the parent container CSS dimensions
+          zingchart.render({
+            id: 'myChart2',
+            data: myConfig,
+            height: '100%',
+            width: '100%'
+          });
+        });
+      </script>
+      <script>
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // window:load event for Javascript to run after HTML
+        // because this Javascript is injected into the document head
+        window.addEventListener('load', () => {
+          // Javascript code to execute after DOM content
+
+          // full ZingChart schema can be found here:
+          // https://www.zingchart.com/docs/api/json-configuration/
+          const myConfig = {
+            type: 'line',
+            title: {
+              text: 'Demo4',
+              fontSize: 24,
+              color: '#5d7d9a'
+            },
+            legend: {
+              draggable: true,
+            },
+            scaleX: {
+              // set scale label
+              label: {
+                text: 'Days'
+              },
+              // convert text on scale indices
+              labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            scaleY: {
+              // scale label with unicode character
+              label: {
+                text: 'Temperature (°F)'
+              }
+            },
+            plot: {
+              // animation docs here:
+              // https://www.zingchart.com/docs/tutorials/design-and-styling/chart-animation/#animation__effect
+              animation: {
+                effect: 'ANIMATION_EXPAND_BOTTOM',
+                method: 'ANIMATION_STRONG_EASE_OUT',
+                sequence: 'ANIMATION_BY_NODE',
+                speed: 275,
+              }
+            },
+            series: [{
+                // plot 1 values, linear data
+                values: [23, 20, 27, 29, 25, 17, 15],
+                text: 'Week 1',
+                backgroundColor: '#4d80a6'
+              },
+              {
+                // plot 2 values, linear data
+                values: [35, 42, 33, 49, 35, 47, 35],
+                text: 'Week 2',
+                backgroundColor: '#70cfeb'
+              },
+              {
+                // plot 2 values, linear data
+                values: [15, 22, 13, 33, 44, 27, 31],
+                text: 'Week 3',
+                backgroundColor: '#8ee9de'
+              }
+            ]
+          };
+
+          // render chart with width and height to
+          // fill the parent container CSS dimensions
+          zingchart.render({
+            id: 'myChart3',
+            data: myConfig,
+            height: '100%',
+            width: '100%'
+          });
+        });
+      </script>
+      <!-- <div id="mycharts"></div> -->
+       <!-- <script>
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+         // window:load event for Javascript to run after HTML
+        // because this Javascript is injected into the document head
+        window.addEventListener('load', () => {
+          // Javascript code to execute after DOM content
+
+          // full ZingChart schema can be found here:
+          // https://www.zingchart.com/docs/api/json-configuration/
+          var myConfig = {
+            type: 'line',
+            csv: {
+                "url": "fruit.csv"
+              }
+          };
+
+          // render chart with width and height to
+          // fill the parent container CSS dimensions
+          zingchart.render({
+            id: 'mycharts',
+            data: myConfig,
+            height: '100%',
+            width: '100%'
+          });
+        });
+      </script> -->
+
+
+
+
+
+      <br><br>
+
+
+
+
+      <div class="row ">
+        <div class="col-sm-12 d-flex justify-content-center">
+          <h4 class="" style="color: white;">Select local CSV File: <input class="" type="file"  style="color:orange; "></h4>
+            <h4 class="" style="color: white;">Select type of plot:<select id="csv" class="btn btn-outline-info btn-lg" style="background-color:black;">
+            <option value="line">Line</option>
+            <option value="bar">Bar</option>
+            <option value="pie">Pie</option>
+            <option value="line3d">3D Line</option>
+            <option value="bar3d">3D Bar</option>
+            <option value="pie3d">3D Pie</option>
+          </select></h4>
+          <!-- <input class="" id="csv" type="file"  style="color:orange;"> -->
+
+          <!-- <output id="out">
+              <h4 class="" style="color: white;">file contents will appear here</h4>
+          </output> -->
+        </div>
+      </div>
+
+
+
+
+      <script type="text/javascript">
+          // var fileInput = document.getElementById("csv"),
+          // readFile = function () {
+          //     var reader = new FileReader();
+          //     reader.onload = function () {
+          //         document.getElementById('out').innerHTML = reader.result;
+          //     };
+          //     // start reading the file. When it is done, calls the onload event defined above.
+          //     reader.readAsBinaryString(fileInput.files[0]);
+          // };
+          //
+          // fileInput.addEventListener('change', readFile);
+          ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+      		// window.addEventListener('load', () => {
+      		var csv_name = "";
+
+      		$('input[type=file]').change(function () {
+        		  csv_name = (this.files[0].name);
+              $('select[id=csv]').change(function () {
+                var grtype = document.getElementById("csv");
+                console.log(grtype.value);
+      				  var myConfig = {
+      					type: grtype.value,
+      					csv: {
+      							"url": csv_name
+      						}
+      				};
+
+      				// render chart with width and height to
+      				// fill the parent container CSS dimensions
+      				zingchart.render({
+      					id: 'mycharts',
+      					data: myConfig,
+      					height: '100%',
+      					width: '100%'
+      				});
+            });
+        		  // continue ur code here and place that variable csv_name in the url
+        		  // i am sending a link to also refer this
+        		  			// link:"https://stackoverflow.com/questions/15201071/how-to-get-full-path-of-selected-file-on-change-of-input-type-file-using-jav"
+
+      		});
+      </script>
+
+
+
+
+
+
+
+
+
+
+    </body>
+
+    </html>
